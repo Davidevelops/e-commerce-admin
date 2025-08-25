@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "https://e-commerce-server-rnas.onrender.com/";
+const API_URL = "https://e-commerce-server-rnas.onrender.com";
 axios.defaults.withCredentials = true;
 
 export type OrderProduct = {

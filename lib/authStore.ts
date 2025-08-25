@@ -32,7 +32,7 @@ export type Auth = {
   resetpassword: (token: string, password: string) => Promise<void>;
 };
 
-const API_URL = "https://e-commerce-server-rnas.onrender.com/";
+const API_URL = "https://e-commerce-server-rnas.onrender.com";
 
 axios.defaults.withCredentials = true;
 export const useAuthStore = create<Auth>((set) => ({

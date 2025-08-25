@@ -42,7 +42,7 @@ export type ProductList = {
   deleteProduct: (productID: string) => Promise<void>;
 };
 
-const API_URL = "https://e-commerce-server-rnas.onrender.com/";
+const API_URL = "https://e-commerce-server-rnas.onrender.com";
 
 export const useProductStore = create<ProductList>((set) => ({
   products: null,
