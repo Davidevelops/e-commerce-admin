@@ -1,4 +1,6 @@
 "use client";
+import { useAuthStore } from "@/lib/authStore";
+import { useRouter } from "next/navigation";
 import { userOrderStore } from "@/lib/orderStore";
 import { useEffect } from "react";
 import {
@@ -10,6 +12,9 @@ import {
 } from "@/components/ui/select";
 
 export default function Page() {
+  const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
+  const router = useRouter();
+
   const {
     orders,
     isLoading,
@@ -19,9 +24,24 @@ export default function Page() {
     updateOrderStatus,
   } = userOrderStore();
 
+  // Check auth on mount
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  useEffect(() => {
+    if (!isCheckingAuth && (!isAuthenticated || !user?.isVerified)) {
+      router.push("/signup");
+    }
+  }, [isCheckingAuth, isAuthenticated, user, router]);
+
   useEffect(() => {
     getOrders();
   }, [getOrders]);
+
+  if (isCheckingAuth) {
+    return <div>Checking authentication...</div>;
+  }
 
   return (
     <div className="p-6">

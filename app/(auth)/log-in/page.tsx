@@ -23,7 +23,7 @@ export default function LogInPage() {
   useEffect(() => {
     console.log("isAuthenticated:", isAuthenticated, "user:", user);
     if (isAuthenticated && user?.isVerified) {
-      router.push("/dashboard");
+      router.push("/orders");
     }
   }, [isAuthenticated, user]);
   return (
